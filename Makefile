@@ -1,16 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/18 09:41:19 by tbouvera          #+#    #+#              #
-#    Updated: 2022/11/01 10:58:34 by tbouvera         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = so_long.out
+NAME = so_long
 SRCS = ./src/main.c
 
 OBJS = ${SRCS:.c=.o}
@@ -18,19 +6,20 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-.c.o :
-	${CC} ${CFLAGS} -c $< -o $(<:.c=.o)
-
 all : ${NAME}
+
+%.o : %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 ${NAME} : ${OBJS}
 	${MAKE} bonus -C ./libft 
-	cp ./libft/libft.a ${NAME}
-	ar rc ${NAME} ${OBJS}
+	${MAKE} -C ./mlx
+	$(CC) ${CFLAGS} $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 clean:
 	${RM} ${OBJS}
 	make fclean -C ./libft
+	make clean -Wno-deprecated-declarations -C ./mlx
 
 fclean: clean
 	${RM} ${NAME}
