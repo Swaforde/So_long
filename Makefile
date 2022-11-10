@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = ./src/main.c
+SRCS = ./src/main.c ./src/mlx_utils.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
@@ -9,12 +9,12 @@ CFLAGS = -Wall -Wextra -Werror
 all : ${NAME}
 
 %.o : %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) -Imlx -c $< -o $@
 
 ${NAME} : ${OBJS}
 	${MAKE} bonus -C ./libft 
 	${MAKE} -C ./mlx
-	$(CC) ${CFLAGS} $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -G3 -fsanitize=address
 
 clean:
 	${RM} ${OBJS}
