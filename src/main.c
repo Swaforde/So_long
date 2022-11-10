@@ -12,6 +12,10 @@ int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
+	void	*t;
+	int		width;
+	int		height;
+	char	relative_path = "../ressources/sprite.xpm";
 	t_data	img;
 	t_color color;
 
@@ -21,10 +25,8 @@ int	main(void)
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1000, 500, "Hello world!");
-	img.img = mlx_new_image(mlx, 1000, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	ft_draw_rec(img, 10, 10, 50, 50, color.red);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	t = mlx_xpm_file_to_image(mlx, "ressources/sprite.xpm", &width, &height);
+	mlx_put_image_to_window(mlx, mlx_win, t, 0, 0);
+	mlx_destroy_image(mlx, t);
 	mlx_loop(mlx);
 }
