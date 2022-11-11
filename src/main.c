@@ -12,10 +12,6 @@ int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
-	void	*t;
-	int		width;
-	int		height;
-	char	relative_path = "../ressources/sprite.xpm";
 	t_data	img;
 	t_color color;
 
@@ -24,9 +20,6 @@ int	main(void)
 	color.blue = 0x0037ff;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1000, 500, "Hello world!");
-	t = mlx_xpm_file_to_image(mlx, "ressources/sprite.xpm", &width, &height);
-	mlx_put_image_to_window(mlx, mlx_win, t, 0, 0);
-	mlx_destroy_image(mlx, t);
+	mlx_win = mlx_new_window(mlx, map_info().width, map_info().height, "Hello world!");
 	mlx_loop(mlx);
 }

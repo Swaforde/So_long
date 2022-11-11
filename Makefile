@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = ./src/main.c ./src/mlx_utils.c
+SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/mlx_utils.c ./src/map.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
