@@ -35,5 +35,6 @@ typedef struct s_map
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void    ft_draw_rec(t_data data, int posX, int posY, int w, int h, int color);
 t_map	map_info(void);
+void	map_parsing(char **tab);
 
 #endif
