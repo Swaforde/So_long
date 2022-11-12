@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/mlx_utils.c ./src/map.c
+SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/mlx_utils.c ./src/map.c ./src/renderer.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc
@@ -14,7 +14,7 @@ all : ${NAME}
 ${NAME} : ${OBJS}
 	${MAKE} bonus -C ./libft 
 	${MAKE} -C ./mlx
-	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -G3 -fsanitize=address
 
 clean:
 	${RM} ${OBJS}

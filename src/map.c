@@ -1,39 +1,53 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-t_map   map_info(void)
+int	ft_get_height(void)
 {
-	t_map	map;
-	int		i;
-	int		fd;
-	int		fd2;
-	
-	i = 1;
+	int height;
+	int	fd;
+
 	fd = open("map.txt", O_RDONLY);
-	map.width = (ft_strlen(get_next_line(fd)) - 1);
-	close (fd);
-	fd = open("map.txt", O_RDONLY);
+	height = 0;
+
 	while (get_next_line(fd) != NULL)
-	{
-		get_next_line(fd);
-		i++;
-	}
-	map.height = i;
+		height ++;
 	close (fd);
-	return (map);
+	return (height);
 }
 
-void map_parsing(char **tab)
+int	ft_get_width(void)
 {
-	int		height;
-	int		width;
+	int	width;
+	int	fd;
+	char	*ptr;
+
+	width = 0;
+	fd = open("map.txt", O_RDONLY);
+	ptr = ft_strdup(get_next_line(fd));
+	close (fd);
+	width = ft_strlen(ptr);
+	if (ptr[ft_strlen(ptr) - 1] == '\n')
+		width --;
+	free (ptr);
+	return (width);
+}
+
+void map_parsing(char **tab, t_map map)
+{
 	int		i;
 	int		fd;
+	char	*tmp;
 
 	i = 0;
 	fd = open("map.txt", O_RDONLY);
-	height = map_info().height;
-	width = map_info().width;
-	while (i <= height)
-		tab[i ++] = ft_strdup(get_next_line(fd));
+	while (i < map.height)
+	{
+		tmp = ft_strdup(get_next_line(fd));
+		if (tmp[ft_strlen(tmp) -1] == '\n')
+			tmp[ft_strlen(tmp) - 1] = '\0';
+		tab[i] = ft_strdup(tmp);
+		i ++;
+		free (tmp);
+	}
+	close (fd);
 }
