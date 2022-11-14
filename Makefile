@@ -1,5 +1,5 @@
 NAME = so_long
-SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/mlx_utils.c ./src/map.c ./src/renderer.c \
+SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/map.c ./src/renderer.c ./src/map_format.c \
 ./src/wall_checker.c
 
 OBJS = ${SRCS:.c=.o}

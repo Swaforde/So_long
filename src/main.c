@@ -26,6 +26,8 @@ int	main(void)
 	tab = ft_calloc (sizeof(char *), (map.height + 1));
 	*tab = ft_calloc (sizeof(char), (map.width + 1));
 	map_parsing(tab, map);
+	if (map_format_checker(tab, map) != 1)
+		return (0);
 	if (wall_checker(tab, map) != 1)
 		return (0);
 	mlx = mlx_init();
