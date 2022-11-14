@@ -18,7 +18,7 @@ void	display_wall(char **map, void *mlx, void *mlx_win, t_map data)
 	i = 0;
 	posY = 0;
 	posX = 0;
-	fd = open("map.txt", O_RDONLY);
+	fd = open(data.map_path, O_RDONLY);
 	img = mlx_xpm_file_to_image(mlx, "./ressources/wall.xpm", &width, &height);
 	chad = mlx_xpm_file_to_image(mlx, "./ressources/chad.xpm", &width, &height);
 	while (f < data.height)

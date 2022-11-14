@@ -1,12 +1,12 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-int	ft_get_height(void)
+int	ft_get_height(t_map map)
 {
 	int height;
 	int	fd;
 
-	fd = open("map.txt", O_RDONLY);
+	fd = open(map.map_path, O_RDONLY);
 	height = 0;
 
 	while (get_next_line(fd) != NULL)
@@ -15,14 +15,14 @@ int	ft_get_height(void)
 	return (height);
 }
 
-int	ft_get_width(void)
+int	ft_get_width(t_map map)
 {
 	int	width;
 	int	fd;
 	char	*ptr;
 
 	width = 0;
-	fd = open("map.txt", O_RDONLY);
+	fd = open(map.map_path, O_RDONLY);
 	ptr = ft_strdup(get_next_line(fd));
 	close (fd);
 	width = ft_strlen(ptr);
@@ -39,7 +39,7 @@ void map_parsing(char **tab, t_map map)
 	char	*tmp;
 
 	i = 0;
-	fd = open("map.txt", O_RDONLY);
+	fd = open(map.map_path, O_RDONLY);
 	while (i < map.height)
 	{
 		tmp = ft_strdup(get_next_line(fd));

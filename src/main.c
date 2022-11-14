@@ -1,15 +1,11 @@
 #include "../include/so_long.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+int	check_file(char *map)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	return (open(map, O_RDONLY));
 }
 
-
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -20,14 +16,24 @@ int	main(void)
 	t_map	map;
 	t_data	img;
 
-	map.height = ft_get_height();
-	map.width = ft_get_width();
-
+	if (argc == 1)
+	{
+		ft_printf("Veuillez renseigner une map.ber !");
+		return (0);
+	}
+	if (check_file(argv[1]) < 0)
+	{
+		ft_printf ("Fichier invalide !");
+		return (0);
+	}
+	map.map_path = argv[1];
+	map.height = ft_get_height(map);
+	map.width = ft_get_width(map);
 	tab = ft_calloc (sizeof(char *), (map.height + 1));
 	*tab = ft_calloc (sizeof(char), (map.width + 1));
 	map_parsing(tab, map);
 	if (map_format_checker(tab, map) != 1)
-		return (0);
+		return (0);	
 	if (wall_checker(tab, map) != 1)
 		return (0);
 	mlx = mlx_init();
