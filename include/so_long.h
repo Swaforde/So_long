@@ -38,5 +38,7 @@ int		ft_get_height(void);
 int		ft_get_width(void);
 void	map_parsing(char **tab, t_map map);
 void	display_wall(char **map, void *mlx, void *mlx_win, t_map data);
+int map_checker(char **map, t_map info);
+
 
 #endif
