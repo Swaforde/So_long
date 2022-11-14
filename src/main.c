@@ -29,8 +29,7 @@ int	main(void)
 	tab = ft_calloc (sizeof(char *), (map.height + 1));
 	*tab = ft_calloc (sizeof(char), (map.width + 1));
 	map_parsing(tab, map);
-	ft_printf("%c", tab[map.height - 1][0]);
-	map_checker(tab, map);
+	ft_printf("%d", map_checker(tab, map));
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, map.width * 100, map.height * 100, "Hello world!");
 	display_wall(tab, mlx, mlx_win, map);
