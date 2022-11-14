@@ -21,7 +21,7 @@ int wall_checker_intra(char *line, t_map info)
 	return (1);
 }
 
-int map_checker(char **map, t_map info)
+int wall_checker(char **map, t_map info)
 {
 	char	*buffer;
 	int		i;
@@ -35,6 +35,7 @@ int map_checker(char **map, t_map info)
 			if (wall_checker_extra(buffer, info) != 1)
 			{
 				free (buffer);
+				ft_printf("La carte n'est pas fermée !");
 				return (0);
 			}
 		}
@@ -43,6 +44,7 @@ int map_checker(char **map, t_map info)
 			if (wall_checker_intra(buffer, info) != 1)
 			{
 				free (buffer);
+				ft_printf("La carte n'est pas fermée !");
 				return (0);
 			}
 		}
