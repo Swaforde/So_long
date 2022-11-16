@@ -22,6 +22,7 @@ typedef struct s_player
 {
 	int	posX;
 	int	posY;
+	int	move_counter;
 }		t_player;
 
 

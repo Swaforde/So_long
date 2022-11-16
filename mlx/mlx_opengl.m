@@ -22,12 +22,11 @@ NSOpenGLPixelFormatAttribute pfa_attrs_opengl[] =
   };
 
 
-
 void	*mlx_new_opengl_window(mlx_ptr_t *mlx_ptr, int size_x, int size_y, char *title)
 {
   mlx_win_list_t	*newwin;
   NSString		*str;
-
+  
   if ((newwin = malloc(sizeof(*newwin))) == NULL)
     return ((void *)0);
   newwin->img_list = NULL;

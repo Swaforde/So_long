@@ -5,10 +5,23 @@ int	check_file(char *map)
 	return (open(map, O_RDONLY));
 }
 
+void	ft_free_tab(t_content *content)
+{
+	int	i;
+
+	i = 0;
+	while (i <= content->map.height)
+	{
+		free (content->tab[i]);
+		i ++;
+	}
+}
+
 int	test(int keycode, t_content *content)
 {
 	if (keycode == 53) {
 		mlx_destroy_image(content->mlx, content->mlx_win);
+		ft_free_tab(content);
 		exit(0);
 	}
 	if (keycode == w)

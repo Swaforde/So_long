@@ -8,6 +8,8 @@ void	forward(t_content *content)
 		content->tab[content->player.posY][content->player.posX] = '0';
 		content->player.posY --;
 		content->tab[content->player.posY][content->player.posX] = 'P';
+		ft_printf("%d,", content->player.posY);
+		ft_printf("%d\n", content->player.posX);
 	}
 	else
 	{
@@ -22,6 +24,8 @@ void	backward(t_content *content)
 		content->tab[content->player.posY][content->player.posX] = '0';
 		content->player.posY ++;
 		content->tab[content->player.posY][content->player.posX] = 'P';
+		ft_printf("%d,", content->player.posY);
+		ft_printf("%d\n", content->player.posX);
 	}
 	else
 	{
@@ -36,6 +40,8 @@ void	turn_right(t_content *content)
 		content->tab[content->player.posY][content->player.posX] = '0';
 		content->player.posX ++;
 		content->tab[content->player.posY][content->player.posX] = 'P';
+		ft_printf("%d,", content->player.posY);
+		ft_printf("%d\n", content->player.posX);
 	}
 	else
 	{
@@ -50,6 +56,8 @@ void	turn_left(t_content *content)
 		content->tab[content->player.posY][content->player.posX] = '0';
 		content->player.posX --;
 		content->tab[content->player.posY][content->player.posX] = 'P';
+		ft_printf("%d,", content->player.posY);
+		ft_printf("%d\n", content->player.posX);
 	}
 	else
 	{
