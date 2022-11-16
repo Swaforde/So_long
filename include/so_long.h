@@ -9,12 +9,14 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-typedef struct	s_color
+typedef struct	s_image
 {
-	int	green;
-	int	red;
-	int	blue;
-}		t_color;
+	int	height;
+	int	width;
+	void *chad;
+	void *wall;
+	void *erase;
+}		t_image;
 
 typedef struct s_map
 {
@@ -26,6 +28,7 @@ typedef struct s_map
 typedef struct s_content
 {
 	t_map	map;
+	t_image	image;
 	char	**tab;
 	void	*mlx;
 	void	*mlx_win;
@@ -42,9 +45,9 @@ enum	key
 int		ft_get_height(t_map);
 int		ft_get_width(t_map map);
 void	map_parsing(char **tab, t_map map);
-void	display_wall(char **map, void *mlx, void *mlx_win, t_map data);
+void	display_wall(char **map, void *mlx, void *mlx_win, t_content content);
 int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
-void	update(t_content content);
+void	update(t_content *content);
 
 #endif

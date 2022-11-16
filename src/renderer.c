@@ -1,13 +1,9 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-void	display_wall(char **map, void *mlx, void *mlx_win, t_map data)
+void	display_wall(char **map, void *mlx, void *mlx_win, t_content content)
 {
 	int	fd;
-	int	width;
-	int height;
-	void *img;
-	void *chad;
 	char *ptr;
 	int	i;
 	int f;
@@ -18,17 +14,15 @@ void	display_wall(char **map, void *mlx, void *mlx_win, t_map data)
 	i = 0;
 	posY = 0;
 	posX = 0;
-	fd = open(data.map_path, O_RDONLY);
-	img = mlx_xpm_file_to_image(mlx, "./ressources/wall.xpm", &width, &height);
-	chad = mlx_xpm_file_to_image(mlx, "./ressources/chad.xpm", &width, &height);
-	while (f < data.height)
+	fd = open(content.map.map_path, O_RDONLY);
+	while (f < content.map.height)
 	{
-		while (i < data.width)
+		while (i < content.map.width)
 		{
 			if (map[f][i] == '1')
-				mlx_put_image_to_window(mlx, mlx_win, img, posY, posX);
+				mlx_put_image_to_window(mlx, mlx_win, content.image.wall, posY, posX);
 			if (map[f][i] == 'P')
-				mlx_put_image_to_window(mlx, mlx_win, chad, posY, posX);
+				mlx_put_image_to_window(mlx, mlx_win, content.image.chad, posY, posX);
 			posY += 100;
 			i ++;
 		}
@@ -37,5 +31,5 @@ void	display_wall(char **map, void *mlx, void *mlx_win, t_map data)
 		i = 0;
 		f ++;
 	}
-	ptr = get_next_line(fd);
+	//ptr = get_next_line(fd);
 }
