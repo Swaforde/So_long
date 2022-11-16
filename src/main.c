@@ -62,6 +62,8 @@ int	main(int argc, char *argv[])
 	cont.image.chad = mlx_xpm_file_to_image(cont.mlx, "./ressources/chad.xpm", &cont.image.width, &cont.image.height);
 	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
 	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);
-	display_wall(cont.tab, cont.mlx, cont.mlx_win, cont);
+	display_wall(cont.tab, cont.mlx, cont.mlx_win, &cont);
+	ft_printf("%d", cont.player.posX);
+	ft_printf("%d", cont.player.posY);
 	hooks(&cont);
 }

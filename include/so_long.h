@@ -18,6 +18,13 @@ typedef struct	s_image
 	void *erase;
 }		t_image;
 
+typedef struct s_player
+{
+	int	posX;
+	int	posY;
+}		t_player;
+
+
 typedef struct s_map
 {
 	int		width;
@@ -29,6 +36,7 @@ typedef struct s_content
 {
 	t_map	map;
 	t_image	image;
+	t_player player;
 	char	**tab;
 	void	*mlx;
 	void	*mlx_win;
@@ -45,9 +53,10 @@ enum	key
 int		ft_get_height(t_map);
 int		ft_get_width(t_map map);
 void	map_parsing(char **tab, t_map map);
-void	display_wall(char **map, void *mlx, void *mlx_win, t_content content);
+void	display_wall(char **map, void *mlx, void *mlx_win, t_content *content);
 int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
 void	update(t_content *content);
+void	forward(t_content *content);
 
 #endif
