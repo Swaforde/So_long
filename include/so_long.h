@@ -58,5 +58,8 @@ int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
 void	update(t_content *content);
 void	forward(t_content *content);
+void	backward(t_content *content);
+void	turn_right(t_content *content);
+void	turn_left(t_content *content);
 
 #endif

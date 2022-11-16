@@ -30,7 +30,6 @@ void	update(t_content *content)
 			posY += 100;
 			f ++;
 		}
-		ft_printf("%s", content->tab[i]);
 		posY = 0;
 		posX += 100;
 		f = 0;

@@ -7,14 +7,28 @@ int	check_file(char *map)
 
 int	test(int keycode, t_content *content)
 {
-	ft_printf("key %d\n", keycode);
 	if (keycode == 53) {
 		mlx_destroy_image(content->mlx, content->mlx_win);
 		exit(0);
 	}
 	if (keycode == w)
 	{
-		content->tab[1][1] = '0';
+		forward(content);
+		update(content);
+	}
+	if (keycode == s)
+	{
+		backward(content);
+		update(content);
+	}
+	if (keycode == d)
+	{
+		turn_right(content);
+		update(content);
+	}
+	if (keycode == a)
+	{
+		turn_left(content);
 		update(content);
 	}
 	return (0);
@@ -63,7 +77,5 @@ int	main(int argc, char *argv[])
 	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
 	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);
 	display_wall(cont.tab, cont.mlx, cont.mlx_win, &cont);
-	ft_printf("%d", cont.player.posX);
-	ft_printf("%d", cont.player.posY);
 	hooks(&cont);
 }
