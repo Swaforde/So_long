@@ -8,6 +8,8 @@ void	forward(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY - 1][cont->player.posX] != '1')
 	{
+		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
+			cont->player.score ++;
 		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY - 1, cont->player.posX) == 0)
@@ -25,8 +27,6 @@ void	forward(t_content *cont)
 		}
 		else
 		{
-			if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
-				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
 		}
 		cont->player.posY --;
@@ -41,6 +41,8 @@ void	backward(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY + 1][cont->player.posX] != '1')
 	{
+		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
+			cont->player.score ++;
 		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY + 1, cont->player.posX) == 0)
@@ -58,8 +60,6 @@ void	backward(t_content *cont)
 		}
 		else
 		{
-			if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
-				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
 		}
 		cont->player.posY ++;
@@ -74,6 +74,8 @@ void	turn_right(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX + 1] != '1')
 	{
+		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
+			cont->player.score ++;
 		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY, cont->player.posX + 1) == 0)
@@ -91,8 +93,6 @@ void	turn_right(t_content *cont)
 		}
 		else
 		{
-			if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
-				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
 		}
 		cont->player.posX ++;
@@ -107,6 +107,8 @@ void	turn_left(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX - 1] != '1')
 	{
+		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
+			cont->player.score ++;
 		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY, cont->player.posX - 1) == 0)
@@ -124,8 +126,6 @@ void	turn_left(t_content *cont)
 		}
 		else
 		{
-			if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
-				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
 		}
 		cont->player.posX --;
