@@ -27,6 +27,8 @@ void	display_wall(char **map, void *mlx, void *mlx_win, t_content *content)
 				content->player.posY = y;
 				content->player.posX = x;
 			}
+			if (map[y][x] == 'E')
+				mlx_put_image_to_window(mlx, mlx_win, content->image.exit_s, posY, posX);
 			posY += 100;
 			x ++;
 		}

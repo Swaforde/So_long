@@ -16,7 +16,15 @@ typedef struct	s_image
 	void *chad;
 	void *wall;
 	void *erase;
+	void	*exit_s;
 }		t_image;
+
+typedef	struct s_exit
+{
+	int	y;
+	int	x;
+}		t_exit;
+
 
 typedef struct s_player
 {
@@ -38,6 +46,7 @@ typedef struct s_content
 	t_map	map;
 	t_image	image;
 	t_player player;
+	t_exit exit;
 	char	**tab;
 	void	*mlx;
 	void	*mlx_win;
@@ -62,5 +71,7 @@ void	forward(t_content *content);
 void	backward(t_content *content);
 void	turn_right(t_content *content);
 void	turn_left(t_content *content);
+void	exit_game(t_content *content, char *msg);
+int		exit_func(t_content *content, int dirY, int dirX);
 
 #endif
