@@ -11,6 +11,8 @@ void	put_images(t_content *content, int posY, int posX, char c)
 		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.erase, posY, posX);
 	if (c == 'E')
 		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.exit_s, posY, posX);
+	if (c == 'C')
+		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.coin, posY, posX);
 		
 }
 

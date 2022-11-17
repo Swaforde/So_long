@@ -24,7 +24,11 @@ void	forward(t_content *cont)
 			cont->exit.y = 0;
 		}
 		else
+		{
+			if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
+				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
+		}
 		cont->player.posY --;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
@@ -53,7 +57,11 @@ void	backward(t_content *cont)
 			cont->exit.y = 0;
 		}
 		else
+		{
+			if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
+				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
+		}
 		cont->player.posY ++;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
@@ -82,7 +90,11 @@ void	turn_right(t_content *cont)
 			cont->exit.y = 0;
 		}
 		else
+		{
+			if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
+				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
+		}
 		cont->player.posX ++;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
@@ -111,7 +123,11 @@ void	turn_left(t_content *cont)
 			cont->exit.y = 0;
 		}
 		else
+		{
+			if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
+				cont->player.score ++;
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
+		}
 		cont->player.posX --;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}

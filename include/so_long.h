@@ -16,6 +16,7 @@ typedef struct	s_image
 	void *chad;
 	void *wall;
 	void *erase;
+	void	*coin;
 	void	*exit_s;
 }		t_image;
 
@@ -31,6 +32,8 @@ typedef struct s_player
 	int	posX;
 	int	posY;
 	int	move_counter;
+	int	score;
+	int	max_score;
 }		t_player;
 
 
@@ -73,5 +76,6 @@ void	turn_right(t_content *content);
 void	turn_left(t_content *content);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
+int		get_max_score (char **tab, t_map map);
 
 #endif

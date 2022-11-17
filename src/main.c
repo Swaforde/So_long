@@ -23,6 +23,7 @@ void	exit_game(t_content *content, char *msg)
 
 int	test(int keycode, t_content *content)
 {
+	ft_printf("%d", content->player.score);
 	if (keycode == 53) {
 		exit_game(content, NULL);
 	}
@@ -83,7 +84,9 @@ int	main(int argc, char *argv[])
 	cont.tab = tab;
 	cont.exit.x = 0;
 	cont.exit.y = 0;
+	cont.player.score = 0;
 	map_parsing(cont.tab, cont.map);
+	cont.player.max_score = get_max_score(cont.tab, cont.map);
 	if (map_format_checker(cont.tab, cont.map) != 1)
 		return (0);
 	if (wall_checker(cont.tab, cont.map) != 1)
@@ -94,6 +97,7 @@ int	main(int argc, char *argv[])
 	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
 	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);
 	cont.image.exit_s = mlx_xpm_file_to_image(cont.mlx, "./ressources/exit.xpm", &cont.image.width, &cont.image.height);
+	cont.image.coin = mlx_xpm_file_to_image(cont.mlx, "./ressources/coin.xpm", &cont.image.width, &cont.image.height);
 	display_wall(cont.tab, cont.mlx, cont.mlx_win, &cont);
 	hooks(&cont);
 }

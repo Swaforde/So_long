@@ -32,6 +32,29 @@ int	ft_get_width(t_map map)
 	return (width);
 }
 
+int	get_max_score (char **tab, t_map map)
+{
+	int	i;
+	int	y;
+	int	x;
+
+	i = 0;
+	y = 0;
+	x = 0;
+	while (y < map.height)
+	{
+		while (x < map.width)
+		{
+			if (tab[y][x] == 'C')
+				i ++;
+			x ++;
+		}
+		x = 0;
+		y ++;
+	}
+	return (i);
+}
+
 void map_parsing(char **tab, t_map map)
 {
 	int		i;
