@@ -2,8 +2,6 @@
 
 int	exit_func(t_content *content, int dirY, int dirX)
 {
-	ft_printf("(%d,", dirY);
-	ft_printf("%d)\n", dirX);
 	if (content->player.score == content->player.max_score)
 	{
 		exit_game(content, "vous avez terminé le jeu !");

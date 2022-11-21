@@ -13,7 +13,6 @@ void	put_images(t_content *content, int posY, int posX, char c)
 		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.exit_s, posY, posX);
 	if (c == 'C')
 		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.coin, posY, posX);
-		
 }
 
 void	update(t_content *content)
@@ -32,11 +31,11 @@ void	update(t_content *content)
 		while (f < content->map.width)
 		{
 			put_images(content, posY, posX, content->tab[i][f]);
-			posY += 100;
+			posY += 50;
 			f ++;
 		}
 		posY = 0;
-		posX += 100;
+		posX += 50;
 		f = 0;
 		i ++;
 	}

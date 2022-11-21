@@ -23,7 +23,6 @@ void	exit_game(t_content *content, char *msg)
 
 int	test(int keycode, t_content *content)
 {
-	ft_printf("%d", content->player.score);
 	if (keycode == 53) {
 		exit_game(content, NULL);
 	}
@@ -64,7 +63,6 @@ int	main(int argc, char *argv[])
 	int		i;
 	void	*test;
 	i = 0;
-
 	if (argc == 1)
 	{
 		ft_printf("Veuillez renseigner une map.ber !");
@@ -92,7 +90,7 @@ int	main(int argc, char *argv[])
 	if (wall_checker(cont.tab, cont.map) != 1)
 		return (0);
 	cont.mlx = mlx_init();
-	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 100, cont.map.height * 100, "Hello world!");
+	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "Hello world!");
 	cont.image.chad = mlx_xpm_file_to_image(cont.mlx, "./ressources/chad.xpm", &cont.image.width, &cont.image.height);
 	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
 	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);

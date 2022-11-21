@@ -64,8 +64,33 @@ int	lenght_checker(char **map, t_map info)
 	return (1);
 }
 
+int	extension_checker(t_map info)
+{
+	int	i;
+
+	i = ft_strlen(info.map_path);
+	i --;
+	if (info.map_path[i] != 'r')
+		return (0);
+	i --;
+	if (info.map_path[i] != 'e')
+		return (0);
+	i --;
+	if (info.map_path[i] != 'b')
+		return (0);
+	i --;
+	if (info.map_path[i] != '.')
+		return (0);
+	return  (1);
+}
+
 int	map_format_checker(char **map, t_map info)
 {
+	if (extension_checker(info) != 1)
+	{
+		ft_printf("L'extension de fichier est invalide !");
+		return (0);
+	}
 	if (lenght_checker(map, info) != 1)
 	{
 		ft_printf("La map ne correspond pas au format !");

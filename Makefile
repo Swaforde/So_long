@@ -15,7 +15,7 @@ all : ${NAME}
 ${NAME} : ${OBJS}
 	${MAKE} bonus -C ./libft 
 	${MAKE} -C ./mlx
-	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)	
+	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -G3 -fsanitize=address
 
 clean:
 	${RM} ${OBJS}
