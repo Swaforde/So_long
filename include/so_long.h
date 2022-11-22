@@ -35,6 +35,7 @@ typedef struct s_player
 	int	move_counter;
 	int	score;
 	int	max_score;
+	int	latest_dir;
 }		t_player;
 
 
@@ -72,10 +73,10 @@ void	display_wall(char **map, void *mlx, void *mlx_win, t_content *content);
 int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
 void	update(t_content *content);
-void	forward(t_content *content);
-void	backward(t_content *content);
-void	turn_right(t_content *content);
-void	turn_left(t_content *content);
+int	forward(t_content *content);
+int	backward(t_content *content);
+int	turn_right(t_content *content);
+int	turn_left(t_content *content);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);

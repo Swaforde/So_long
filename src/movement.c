@@ -1,7 +1,7 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-void	forward(t_content *cont)
+int	forward(t_content *cont)
 {
 	int	mod;
 
@@ -30,9 +30,12 @@ void	forward(t_content *cont)
 		cont->player.posY --;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
+	else
+		return (0);
+	return (1);
 }
 
-void	backward(t_content *cont)
+int	backward(t_content *cont)
 {
 	int	mod;
 
@@ -61,9 +64,12 @@ void	backward(t_content *cont)
 		cont->player.posY ++;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
+	else
+		return (0);
+	return (1);
 }
 
-void	turn_right(t_content *cont)
+int	turn_right(t_content *cont)
 {
 	int	mod;
 
@@ -92,9 +98,12 @@ void	turn_right(t_content *cont)
 		cont->player.posX ++;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
+	else
+		return (0);
+	return (1);
 }
 
-void	turn_left(t_content *cont)
+int	turn_left(t_content *cont)
 {
 	int	mod;
 
@@ -123,4 +132,7 @@ void	turn_left(t_content *cont)
 		cont->player.posX --;
 		cont->tab[cont->player.posY][cont->player.posX] = 'P';
 	}
+	else
+		return (0);
+	return (1);
 }

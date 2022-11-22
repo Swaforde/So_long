@@ -81,6 +81,7 @@ int	main(int argc, char *argv[])
 	map.height = ft_get_height(map);
 	map.width = ft_get_width(map);
 	cont.map = map;
+	cont.player.latest_dir = 5;
 	tab = ft_calloc (sizeof(char *), (cont.map.height + 1));
 	*tab = ft_calloc (sizeof(char), (cont.map.width + 1));
 	cont.tab = tab;
