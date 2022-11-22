@@ -8,6 +8,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <unistd.h>
 
 typedef struct	s_image
 {
@@ -60,7 +61,8 @@ enum	key
 	w = 13,
 	a = 0,
 	s = 1,
-	d = 2
+	d = 2,
+	i = 34
 };
 
 int		ft_get_height(t_map);
@@ -77,5 +79,6 @@ void	turn_left(t_content *content);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
+void	launch_bot(t_content *content);
 
 #endif

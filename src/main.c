@@ -46,6 +46,10 @@ int	test(int keycode, t_content *content)
 		turn_left(content);
 		update(content);
 	}
+	if (keycode == i)
+	{
+		launch_bot(content);
+	}
 	return (0);
 }
 
@@ -90,7 +94,7 @@ int	main(int argc, char *argv[])
 	if (wall_checker(cont.tab, cont.map) != 1)
 		return (0);
 	cont.mlx = mlx_init();
-	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "Hello world!");
+	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "So_Long");
 	cont.image.chad = mlx_xpm_file_to_image(cont.mlx, "./ressources/chad.xpm", &cont.image.width, &cont.image.height);
 	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
 	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);
