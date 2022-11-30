@@ -10,6 +10,18 @@
 # include <stdio.h>
 # include <unistd.h>
 
+typedef struct s_node
+{
+	int	y;
+	int	x;
+	int	a;
+	int b;
+	int	c;
+	int	d;
+	struct s_node	*next;
+}		t_node;
+
+
 typedef struct	s_image
 {
 	int	height;
@@ -81,5 +93,11 @@ void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
 void	launch_bot(t_content *content);
+
+t_node    *last_node(t_node *node);
+void    delete_node(t_node *node);
+void    add_node_back(t_node  *new, t_node  *node);
+void    add_node_front(t_node *new, t_node **node);
+t_node    *new_node(int   x, int  y);
 
 #endif

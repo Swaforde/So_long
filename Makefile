@@ -1,6 +1,6 @@
 NAME = so_long
 SRCS = ./GNL/get_next_line_utils.c ./GNL/get_next_line.c ./src/main.c ./src/map.c ./src/renderer.c ./src/map_format.c \
-./src/wall_checker.c ./src/update.c ./src/movement.c ./src/player.c ./src/bot.c
+./src/wall_checker.c ./src/update.c ./src/movement.c ./src/player.c ./src/bot.c ./src/list_manager.c
 
 OBJS = ${SRCS:.c=.o}
 CC = gcc

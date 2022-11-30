@@ -60,7 +60,7 @@ void	check_block(t_content *c)
 	}
 }
 
-void	check_node(t_content *c)
+int	check_node(t_content *c)
 {
 	int	y;
 	int	x;
@@ -78,7 +78,7 @@ void	check_node(t_content *c)
 		if (c->tab[y][x + 1] != '1')
 			i ++;
 		if (i < 2)
-			return ;
+			return 0;
 	}
 	else if (c->player.latest_dir == 1)
 	{
@@ -89,7 +89,7 @@ void	check_node(t_content *c)
 		if (c->tab[y + 1][x] != '1')
 			i ++;
 		if (i < 2)
-			return ;
+			return 0;
 	}
 	else if (c->player.latest_dir == 2)
 	{
@@ -100,7 +100,7 @@ void	check_node(t_content *c)
 		if (c->tab[y][x - 1] != '1')
 			i ++;
 		if (i < 2)
-			return ;
+			return 0;
 	}
 	if (c->player.latest_dir == 3)
 	{
@@ -111,12 +111,13 @@ void	check_node(t_content *c)
 		if (c->tab[y + 1][x] != '1')
 			i ++;
 		if (i < 2)
-			return ;
+			return 0;
 	}
 	ft_printf("Embranchement : %d ", i);
 	ft_printf(", type (%d)", c->player.latest_dir);
 	ft_printf ("[%d x ", y);
 	ft_printf ("%d]\n", x);
+	return 1;
 }
 
 int	bot_choice(t_content *c)
@@ -147,7 +148,12 @@ void	launch_bot(t_content *content)
 	i = 5;
 	x = 0;
 	b = 0;
-	ft_printf("------------------------\n|Auto player launched !|\n------------------------\n");
+
+	t_node	*node_head;
+	t_node	*node;
+
+	node_head = new_node(0, 0);
+	node = node_head;
 	while (x <= 0)
 	{
 		s = bot_choice(content);
@@ -157,7 +163,7 @@ void	launch_bot(t_content *content)
 			ft_printf("Forward\n");
 				content->player.latest_dir = 0;
 				b = forward(content);
-				check_node(content);
+				ft_printf("%d", check_node(content));
 				check_block(content);
 		}
 		if (s == 1)
@@ -165,7 +171,7 @@ void	launch_bot(t_content *content)
 			ft_printf("Right\n");
 				content->player.latest_dir = 1;
 				b = turn_right(content);
-				check_node(content);
+				ft_printf("%d", check_node(content));
 				check_block(content);
 		}
 		if (s == 2)
@@ -173,7 +179,7 @@ void	launch_bot(t_content *content)
 			ft_printf("Backward\n");
 				content->player.latest_dir = 2;
 				b = backward(content);
-				check_node(content);
+				ft_printf("%d", check_node(content));
 				check_block(content);
 		}
 		if (s == 3)
@@ -181,7 +187,7 @@ void	launch_bot(t_content *content)
 			ft_printf("Left\n");
 				content->player.latest_dir = 3;
 				b = turn_left(content);
-				check_node(content);
+				ft_printf("%d", check_node(content));
 				check_block(content);
 		}
 		if (s == 10)
@@ -191,5 +197,4 @@ void	launch_bot(t_content *content)
 		x ++;
 		s = 0;
 	}
-	ft_printf("----------------------\n|Auto player stoped !|\n----------------------\n");
 }
