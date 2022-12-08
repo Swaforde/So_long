@@ -88,37 +88,37 @@ int	map_format_checker(char **map, t_map info)
 {
 	if (extension_checker(info) != 1)
 	{
-		ft_printf("L'extension de fichier est invalide !");
+		ft_printf(" Error\nL'extension de fichier est invalide !");
 		return (0);
 	}
 	if (lenght_checker(map, info) != 1)
 	{
-		ft_printf("La map ne correspond pas au format !");
+		ft_printf("Error\nLa map ne correspond pas au format !");
 		return (0);
 	}
 	if (doublon_checker(map, info, 'P') > 1)
 	{
-		ft_printf("La map contient trop de giga chad ! (player)");
+		ft_printf("Error\nLa map contient trop de giga chad ! (player)");
 		return (0);
 	}
 	if (doublon_checker(map, info, 'P') < 1)
 	{
-		ft_printf("La map ne contient aucun player");
+		ft_printf("Error\nLa map ne contient aucun player");
 		return (0);
 	}
 	if (doublon_checker(map, info, 'E') > 1)
 	{
-		ft_printf("La map contient trop plusieurs sorties !");
+		ft_printf("Error\nLa map contient trop plusieurs sorties !");
 		return (0);
 	}
 	if (doublon_checker(map, info, 'E') < 1)
 	{
-		ft_printf("La map ne contient aucune sortie !");
+		ft_printf("Error\nLa map ne contient aucune sortie !");
 		return (0);
 	}
 	if (char_checker(map, info) != 1)
 	{
-		ft_printf("La map contient des charactère interdit !");
+		ft_printf("Error\nLa map contient des charactère interdit !");
 		return (0);
 	}
 	return (1);

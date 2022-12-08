@@ -44,7 +44,7 @@ typedef struct s_player
 {
 	int	posX;
 	int	posY;
-	int	move_counter;
+	int	move_count;
 	int	score;
 	int	max_score;
 	int	latest_dir;
@@ -92,7 +92,6 @@ int	turn_left(t_content *content);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
-void	launch_bot(t_content *content);
 
 t_node    *last_node(t_node *node);
 void    delete_node(t_node *node);

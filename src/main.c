@@ -26,30 +26,26 @@ int	test(int keycode, t_content *content)
 	if (keycode == 53) {
 		exit_game(content, NULL);
 	}
-	if (keycode == w)
+	if (keycode == w || keycode == 126)
 	{
 		forward(content);
 		update(content);
 	}
-	if (keycode == s)
+	if (keycode == s || keycode == 125)
 	{
 		backward(content);
 		update(content);
 	}
-	if (keycode == d)
+	if (keycode == d || keycode == 124)
 	{
 		turn_right(content);
 		update(content);
 	}
-	if (keycode == a)
+	if (keycode == a || keycode == 123)
 	{
 		turn_left(content);
 		update(content);
-	}
-	if (keycode == i)
-	{
-		launch_bot(content);
-	}
+	}		
 	return (0);
 }
 
@@ -69,12 +65,12 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (argc == 1)
 	{
-		ft_printf("Veuillez renseigner une map.ber !");
+		ft_printf("Error\nVeuillez renseigner une map.ber !");
 		return (0);
 	}
 	if (check_file(argv[1]) < 0)
 	{
-		ft_printf ("Fichier invalide !");
+		ft_printf ("Error\nFichier invalide !");
 		return (0);
 	}
 	map.map_path = argv[1];
@@ -83,7 +79,11 @@ int	main(int argc, char *argv[])
 	cont.map = map;
 	cont.player.latest_dir = 5;
 	tab = ft_calloc (sizeof(char *), (cont.map.height + 1));
+	if (!tab)
+		return (NULL);
 	*tab = ft_calloc (sizeof(char), (cont.map.width + 1));
+	if (!*tab)
+		return (NULL);
 	cont.tab = tab;
 	cont.exit.x = 0;
 	cont.exit.y = 0;

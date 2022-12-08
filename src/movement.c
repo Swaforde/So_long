@@ -8,6 +8,8 @@ int	forward(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY - 1][cont->player.posX] != '1')
 	{
+		cont->player.move_count++;
+		ft_printf("Total move : %d\n", cont->player.move_count);
 		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
 			cont->player.score ++;
 		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'E')
@@ -42,6 +44,8 @@ int	backward(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY + 1][cont->player.posX] != '1')
 	{
+		cont->player.move_count++;
+		ft_printf("Total move : %d\n", cont->player.move_count);
 		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
 			cont->player.score ++;
 		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'E')
@@ -76,6 +80,8 @@ int	turn_right(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX + 1] != '1')
 	{
+		cont->player.move_count++;
+		ft_printf("Total move : %d\n", cont->player.move_count);
 		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
 			cont->player.score ++;
 		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'E')
@@ -110,6 +116,8 @@ int	turn_left(t_content *cont)
 	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX - 1] != '1')
 	{
+		cont->player.move_count++;
+		ft_printf("Total move : %d\n", cont->player.move_count);
 		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
 			cont->player.score ++;
 		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'E')
