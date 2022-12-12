@@ -55,6 +55,30 @@ int	get_max_score (char **tab, t_map map)
 	return (i);
 }
 
+void get_start_position(t_content *content)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (y < content->map.height)
+	{
+		while (x < content->map.width)
+		{
+			if (content->tab[y][x] == 'P')
+			{
+				content->player.posY = y;
+				content->player.posX = x;
+			}
+			x ++;
+		}
+		x = 0;
+		y ++;
+	}
+
+}
+
 void map_parsing(char **tab, t_map map)
 {
 	int		i;

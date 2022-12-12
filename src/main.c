@@ -18,6 +18,12 @@ void	exit_game(t_content *content, char *msg)
 		free (content->tab[i]);
 		i ++;
 	}
+
+	while (i <= content->map.height)
+	{
+		free (content->tabTest[i]);
+		i ++;
+	}
 	exit(0);
 }
 
@@ -60,6 +66,7 @@ int	main(int argc, char *argv[])
 	t_content cont;
 	void	*mlx_win;
 	char	**tab;
+	char	**tabTest;
 	int		i;
 	void	*test;
 	i = 0;
@@ -84,12 +91,29 @@ int	main(int argc, char *argv[])
 	*tab = ft_calloc (sizeof(char), (cont.map.width + 1));
 	if (!*tab)
 		return (NULL);
+	tabTest = ft_calloc (sizeof(char *), (cont.map.height + 1));
+	if (!tabTest)
+		return (NULL);
+	*tabTest = ft_calloc (sizeof(char), (cont.map.width + 1));
+	if (!*tabTest)
+		return (NULL);
+
 	cont.tab = tab;
+	cont.tabTest = tabTest;
 	cont.exit.x = 0;
 	cont.exit.y = 0;
 	cont.player.score = 0;
+	cont.player.move_count = 0;
 	map_parsing(cont.tab, cont.map);
+	map_parsing(cont.tabTest, cont.map);
 	cont.player.max_score = get_max_score(cont.tab, cont.map);
+	get_start_position(&cont);
+	backtracking(cont.player.posY, cont.player.posX, &cont);
+	if (Check_All_Element(&cont, cont.tabTest) != 0)
+	{
+		ft_printf("Error\nTous les objets ne sont pas collectable !");
+		return (0);
+	}
 	if (map_format_checker(cont.tab, cont.map) != 1)
 		return (0);
 	if (wall_checker(cont.tab, cont.map) != 1)

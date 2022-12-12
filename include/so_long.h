@@ -65,6 +65,7 @@ typedef struct s_content
 	t_player player;
 	t_exit exit;
 	char	**tab;
+	char	**tabTest;
 	void	*mlx;
 	void	*mlx_win;
 }		t_content;
@@ -92,6 +93,9 @@ int	turn_left(t_content *content);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
+void backtracking(int posY, int posX, t_content *content);
+int Check_All_Element(t_content *content, char **tab);
+void get_start_position(t_content *content);
 
 t_node    *last_node(t_node *node);
 void    delete_node(t_node *node);
