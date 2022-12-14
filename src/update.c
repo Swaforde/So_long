@@ -1,41 +1,41 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-void	put_images(t_content *content, int posY, int posX, char c)
+void	put_images(t_content *c, int p_y, int p_x, char tested_char)
 {
-	if (c == '1')
-		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.wall, posY, posX);
-	if (c == 'P')
-		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.chad, posY, posX);
-	if (c == '0')
-		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.erase, posY, posX);
-	if (c == 'E')
-		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.exit_s, posY, posX);
-	if (c == 'C')
-		mlx_put_image_to_window(content->mlx, content->mlx_win, content->image.coin, posY, posX);
+	if (tested_char == '1')
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.wall, p_y, p_x);
+	if (tested_char == 'P')
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.chad, p_y, p_x);
+	if (tested_char == '0')
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.erase, p_y, p_x);
+	if (tested_char == 'E')
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.exit_s, p_y, p_x);
+	if (tested_char == 'C')
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.coin, p_y, p_x);
 }
 
 void	update(t_content *content)
 {
 	int		i;
 	int		f;
-	int		posX;
-	int		posY;
+	int		p_x;
+	int		p_y;
 
 	i = 0;
 	f = 0;
-	posX = 0;
-	posY = 0;
+	p_x = 0;
+	p_y = 0;
 	while (i < content->map.height)
 	{
 		while (f < content->map.width)
 		{
-			put_images(content, posY, posX, content->tab[i][f]);
-			posY += 50;
+			put_images(content, p_y, p_x, content->tab[i][f]);
+			p_y += 50;
 			f ++;
 		}
-		posY = 0;
-		posX += 50;
+		p_y = 0;
+		p_x += 50;
 		f = 0;
 		i ++;
 	}

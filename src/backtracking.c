@@ -1,6 +1,6 @@
 #include "../include/so_long.h"
 
-void backtracking(int posY, int posX, t_content *content)
+void	backtracking(int posY, int posX, t_content *content)
 {
 	if (content->tabTest[posY - 1][posX] != '1')
 	{
@@ -14,7 +14,7 @@ void backtracking(int posY, int posX, t_content *content)
 	}
 	if (content->tabTest[posY + 1][posX] != '1')
 	{
-		content->tabTest[posY][posX] = '1';		
+		content->tabTest[posY][posX] = '1';
 		backtracking(posY + 1, posX, content);
 	}
 	if (content->tabTest[posY][posX - 1] != '1')
@@ -25,11 +25,11 @@ void backtracking(int posY, int posX, t_content *content)
 	content->tabTest[posY][posX] = '1';
 }
 
-int Check_All_Element(t_content *content, char **tab)
+int	check_all_element(t_content *content, char **tab)
 {
 	int	i;
 	int	f;
-	int total;
+	int	total;
 
 	i = 0;
 	f = 0;

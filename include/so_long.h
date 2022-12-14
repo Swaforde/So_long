@@ -82,7 +82,6 @@ enum	key
 int		ft_get_height(t_map);
 int		ft_get_width(t_map map);
 void	map_parsing(char **tab, t_map map);
-void	display_wall(char **map, void *mlx, void *mlx_win, t_content *content);
 int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
 void	update(t_content *content);
@@ -94,13 +93,7 @@ void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
 void backtracking(int posY, int posX, t_content *content);
-int Check_All_Element(t_content *content, char **tab);
+int check_all_element(t_content *content, char **tab);
 void get_start_position(t_content *content);
-
-t_node    *last_node(t_node *node);
-void    delete_node(t_node *node);
-void    add_node_back(t_node  *new, t_node  *node);
-void    add_node_front(t_node *new, t_node **node);
-t_node    *new_node(int   x, int  y);
 
 #endif

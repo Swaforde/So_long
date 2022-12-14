@@ -3,12 +3,11 @@
 
 int	ft_get_height(t_map map)
 {
-	int height;
+	int	height;
 	int	fd;
 
 	fd = open(map.map_path, O_RDONLY);
 	height = 0;
-
 	while (get_next_line(fd) != NULL)
 		height ++;
 	close (fd);
@@ -17,8 +16,8 @@ int	ft_get_height(t_map map)
 
 int	ft_get_width(t_map map)
 {
-	int	width;
-	int	fd;
+	int		width;
+	int		fd;
 	char	*ptr;
 
 	width = 0;
@@ -32,7 +31,7 @@ int	ft_get_width(t_map map)
 	return (width);
 }
 
-int	get_max_score (char **tab, t_map map)
+int	get_max_score(char **tab, t_map map)
 {
 	int	i;
 	int	y;
@@ -55,7 +54,7 @@ int	get_max_score (char **tab, t_map map)
 	return (i);
 }
 
-void get_start_position(t_content *content)
+void	get_start_position(t_content *content)
 {
 	int	y;
 	int	x;
@@ -76,10 +75,9 @@ void get_start_position(t_content *content)
 		x = 0;
 		y ++;
 	}
-
 }
 
-void map_parsing(char **tab, t_map map)
+void	map_parsing(char **tab, t_map map)
 {
 	int		i;
 	int		fd;
@@ -90,7 +88,7 @@ void map_parsing(char **tab, t_map map)
 	while (i < map.height)
 	{
 		tmp = ft_strdup(get_next_line(fd));
-		if (tmp[ft_strlen(tmp) -1] == '\n')
+		if (tmp[ft_strlen(tmp) - 1] == '\n')
 			tmp[ft_strlen(tmp) - 1] = '\0';
 		tab[i] = ft_strdup(tmp);
 		i ++;

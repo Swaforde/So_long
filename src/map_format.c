@@ -25,7 +25,7 @@ int	doublon_checker(char **map, t_map info, char c)
 {
 	int	i;
 	int	f;
-	int score;
+	int	score;
 
 	i = 0;
 	f = 0;
@@ -81,7 +81,7 @@ int	extension_checker(t_map info)
 	i --;
 	if (info.map_path[i] != '.')
 		return (0);
-	return  (1);
+	return (1);
 }
 
 int	map_format_checker(char **map, t_map info)

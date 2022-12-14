@@ -18,7 +18,6 @@ void	exit_game(t_content *content, char *msg)
 		free (content->tab[i]);
 		i ++;
 	}
-
 	while (i <= content->map.height)
 	{
 		free (content->tabTest[i]);
@@ -29,7 +28,8 @@ void	exit_game(t_content *content, char *msg)
 
 int	test(int keycode, t_content *content)
 {
-	if (keycode == 53) {
+	if (keycode == 53)
+	{
 		exit_game(content, NULL);
 	}
 	if (keycode == w || keycode == 126)
@@ -55,20 +55,35 @@ int	test(int keycode, t_content *content)
 	return (0);
 }
 
-void hooks(t_content *content) {
+void	hooks(t_content *content)
+{
 	mlx_key_hook(content->mlx_win, &test, content);
 	mlx_loop(content->mlx);
 }
 
+void init(t_content *c)
+{
+	c->exit.x = 0;
+	c->exit.y = 0;
+	c->player.score = 0;
+	c->player.move_count = 0;
+	c->image.chad = mlx_xpm_file_to_image(c->mlx, "./ressources/chad.xpm", &c->image.width, &c->image.height);
+	c->image.wall = mlx_xpm_file_to_image(c->mlx, "./ressources/wall.xpm", &c->image.width, &c->image.height);
+	c->image.erase = mlx_xpm_file_to_image(c->mlx, "./ressources/erase.xpm", &c->image.width, &c->image.height);
+	c->image.exit_s = mlx_xpm_file_to_image(c->mlx, "./ressources/exit.xpm", &c->image.width, &c->image.height);
+	c->image.coin = mlx_xpm_file_to_image(c->mlx, "./ressources/coin.xpm", &c->image.width, &c->image.height);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_map	map;
-	t_content cont;
-	void	*mlx_win;
-	char	**tab;
-	char	**tabTest;
-	int		i;
-	void	*test;
+	t_map		map;
+	t_content	cont;
+	void		*mlx_win;
+	char		**tab;
+	char		**tabtest;
+	int			i;
+	void		*test;
+
 	i = 0;
 	if (argc == 1)
 	{
@@ -91,40 +106,31 @@ int	main(int argc, char *argv[])
 	*tab = ft_calloc (sizeof(char), (cont.map.width + 1));
 	if (!*tab)
 		return (NULL);
-	tabTest = ft_calloc (sizeof(char *), (cont.map.height + 1));
-	if (!tabTest)
+	tabtest = ft_calloc (sizeof(char *), (cont.map.height + 1));
+	if (!tabtest)
 		return (NULL);
-	*tabTest = ft_calloc (sizeof(char), (cont.map.width + 1));
-	if (!*tabTest)
+	*tabtest = ft_calloc (sizeof(char), (cont.map.width + 1));
+	if (!*tabtest)
 		return (NULL);
-
 	cont.tab = tab;
-	cont.tabTest = tabTest;
-	cont.exit.x = 0;
-	cont.exit.y = 0;
-	cont.player.score = 0;
-	cont.player.move_count = 0;
+	cont.tabTest = tabtest;
 	map_parsing(cont.tab, cont.map);
 	map_parsing(cont.tabTest, cont.map);
 	cont.player.max_score = get_max_score(cont.tab, cont.map);
 	get_start_position(&cont);
-	backtracking(cont.player.posY, cont.player.posX, &cont);
-	if (Check_All_Element(&cont, cont.tabTest) != 0)
-	{
-		ft_printf("Error\nTous les objets ne sont pas collectable !");
-		return (0);
-	}
 	if (map_format_checker(cont.tab, cont.map) != 1)
 		return (0);
 	if (wall_checker(cont.tab, cont.map) != 1)
 		return (0);
+	backtracking(cont.player.posY, cont.player.posX, &cont);
+	if (check_all_element(&cont, cont.tabTest) != 0)
+	{
+		ft_printf("Error\nTous les objets ne sont pas collectable !");
+		return (0);
+	}
 	cont.mlx = mlx_init();
 	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "So_Long");
-	cont.image.chad = mlx_xpm_file_to_image(cont.mlx, "./ressources/chad.xpm", &cont.image.width, &cont.image.height);
-	cont.image.wall = mlx_xpm_file_to_image(cont.mlx, "./ressources/wall.xpm", &cont.image.width, &cont.image.height);
-	cont.image.erase = mlx_xpm_file_to_image(cont.mlx, "./ressources/erase.xpm", &cont.image.width, &cont.image.height);
-	cont.image.exit_s = mlx_xpm_file_to_image(cont.mlx, "./ressources/exit.xpm", &cont.image.width, &cont.image.height);
-	cont.image.coin = mlx_xpm_file_to_image(cont.mlx, "./ressources/coin.xpm", &cont.image.width, &cont.image.height);
-	display_wall(cont.tab, cont.mlx, cont.mlx_win, &cont);
+	init(&cont);
+	update(&cont);
 	hooks(&cont);
 }

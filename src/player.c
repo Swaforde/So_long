@@ -6,7 +6,7 @@ int	exit_func(t_content *content, int dirY, int dirX)
 	{
 		exit_game(content, "vous avez terminé le jeu !");
 	}
-	else 
+	else
 	{
 		ft_printf("\n(Attendu : %d", content->player.max_score);
 		ft_printf(" Vous : %d)\n", content->player.score);
