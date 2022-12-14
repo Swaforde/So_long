@@ -45,5 +45,7 @@ int	check_all_element(t_content *content, char **tab)
 		f = 0;
 		i ++;
 	}
+	if (total != 0)
+		ft_printf("Error\nTous les objets ne sont pas collectable !");
 	return (total);
 }

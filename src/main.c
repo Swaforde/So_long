@@ -2,7 +2,12 @@
 
 int	check_file(char *map)
 {
-	return (open(map, O_RDONLY));
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		ft_printf ("Error\nFichier invalide !");
+	return (fd);
 }
 
 void	exit_game(t_content *content, char *msg)
@@ -61,7 +66,7 @@ void	hooks(t_content *content)
 	mlx_loop(content->mlx);
 }
 
-void init(t_content *c)
+void	init(t_content *c)
 {
 	c->exit.x = 0;
 	c->exit.y = 0;
@@ -74,48 +79,56 @@ void init(t_content *c)
 	c->image.coin = mlx_xpm_file_to_image(c->mlx, "./ressources/coin.xpm", &c->image.width, &c->image.height);
 }
 
+int	tab_allocation(t_content *cont, char *argv)
+{
+	t_map		map;
+	char		**tab;
+	char		**tabtest;
+
+	map.map_path = argv;
+	map.height = ft_get_height(map);
+	map.width = ft_get_width(map);
+	cont->map = map;
+	tab = ft_calloc (sizeof(char *), (cont->map.height + 1));
+	if (!tab)
+		return (0);
+	*tab = ft_calloc (sizeof(char), (cont->map.width + 1));
+	if (!*tab)
+		return (0);
+	tabtest = ft_calloc (sizeof(char *), (cont->map.height + 1));
+	if (!tabtest)
+		return (0);
+	*tabtest = ft_calloc (sizeof(char), (cont->map.width + 1));
+	if (!*tabtest)
+		return (0);
+	cont->tab = tab;
+	cont->tabTest = tabtest;
+	map_parsing(cont->tab, cont->map);
+	map_parsing(cont->tabTest, cont->map);
+}
+
+int	arguement_check(int argc)
+{
+	if (argc == 1)
+	{
+		ft_printf("Error\nVeuillez renseigner un fichier .ber !");
+		return (0);
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_map		map;
 	t_content	cont;
 	void		*mlx_win;
-	char		**tab;
-	char		**tabtest;
-	int			i;
 	void		*test;
 
-	i = 0;
-	if (argc == 1)
-	{
-		ft_printf("Error\nVeuillez renseigner une map.ber !");
+	if (arguement_check(argc) == 0)
 		return (0);
-	}
 	if (check_file(argv[1]) < 0)
-	{
-		ft_printf ("Error\nFichier invalide !");
 		return (0);
-	}
-	map.map_path = argv[1];
-	map.height = ft_get_height(map);
-	map.width = ft_get_width(map);
-	cont.map = map;
-	cont.player.latest_dir = 5;
-	tab = ft_calloc (sizeof(char *), (cont.map.height + 1));
-	if (!tab)
-		return (NULL);
-	*tab = ft_calloc (sizeof(char), (cont.map.width + 1));
-	if (!*tab)
-		return (NULL);
-	tabtest = ft_calloc (sizeof(char *), (cont.map.height + 1));
-	if (!tabtest)
-		return (NULL);
-	*tabtest = ft_calloc (sizeof(char), (cont.map.width + 1));
-	if (!*tabtest)
-		return (NULL);
-	cont.tab = tab;
-	cont.tabTest = tabtest;
-	map_parsing(cont.tab, cont.map);
-	map_parsing(cont.tabTest, cont.map);
+	tab_allocation(&cont, argv[1]);
 	cont.player.max_score = get_max_score(cont.tab, cont.map);
 	get_start_position(&cont);
 	if (map_format_checker(cont.tab, cont.map) != 1)
@@ -124,10 +137,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	backtracking(cont.player.posY, cont.player.posX, &cont);
 	if (check_all_element(&cont, cont.tabTest) != 0)
-	{
-		ft_printf("Error\nTous les objets ne sont pas collectable !");
 		return (0);
-	}
 	cont.mlx = mlx_init();
 	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "So_Long");
 	init(&cont);

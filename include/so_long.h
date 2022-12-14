@@ -47,7 +47,6 @@ typedef struct s_player
 	int	move_count;
 	int	score;
 	int	max_score;
-	int	latest_dir;
 }		t_player;
 
 
