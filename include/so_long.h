@@ -84,15 +84,19 @@ void	map_parsing(char **tab, t_map map);
 int		wall_checker(char **map, t_map info);
 int		map_format_checker(char **map, t_map info);
 void	update(t_content *content);
-int	forward(t_content *content);
-int	backward(t_content *content);
-int	turn_right(t_content *content);
-int	turn_left(t_content *content);
+int	forward(t_content *content, int mod);
+int	backward(t_content *content, int mod);
+int	turn_right(t_content *content, int mod);
+int	turn_left(t_content *content, int mod);
 void	exit_game(t_content *content, char *msg);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score (char **tab, t_map map);
 void backtracking(int posY, int posX, t_content *content);
 int check_all_element(t_content *content, char **tab);
 void get_start_position(t_content *content);
+int	arguement_check(int argc);
+int	tab_allocation(t_content *cont, char *argv);
+void	init(t_content *c);
+void	reset_value(t_content *cont);
 
 #endif

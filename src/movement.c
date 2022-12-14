@@ -1,17 +1,36 @@
 #include "../include/so_long.h"
 #include <fcntl.h>
 
-int	forward(t_content *cont)
+int	collectable_check(int movement, t_content *cont)
 {
-	int	mod;
+	if (movement == 0)
+	{
+		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
+			return (1);
+	}
+	if (movement == 1)
+	{
+		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
+			return (1);
+	}
+	if (movement == 2)
+	{
+		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
+			return (1);
+	}
+	if (movement == 3)
+	{
+		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
+			return (1);
+	}
+	return (0);
+}
 
-	mod = 0;
+int	forward(t_content *cont, int mod)
+{
 	if (cont->tab[cont->player.posY - 1][cont->player.posX] != '1')
 	{
-		cont->player.move_count++;
-		ft_printf("Total move : %d\n", cont->player.move_count);
-		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'C')
-			cont->player.score ++;
+		cont->player.score += collectable_check(0, cont);
 		if (cont->tab[cont->player.posY - 1][cont->player.posX] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY - 1, cont->player.posX) == 0)
@@ -24,8 +43,7 @@ int	forward(t_content *cont)
 		if (cont->exit.y != 0 && cont->exit.x != 0 && mod == 0)
 		{
 			cont->tab[cont->exit.y][cont->exit.x] = 'E';
-			cont->exit.x = 0;
-			cont->exit.y = 0;
+			reset_value(cont);
 		}
 		else
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
@@ -37,17 +55,11 @@ int	forward(t_content *cont)
 	return (1);
 }
 
-int	backward(t_content *cont)
+int	backward(t_content *cont, int mod)
 {
-	int	mod;
-
-	mod = 0;
 	if (cont->tab[cont->player.posY + 1][cont->player.posX] != '1')
 	{
-		cont->player.move_count++;
-		ft_printf("Total move : %d\n", cont->player.move_count);
-		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'C')
-			cont->player.score ++;
+		cont->player.score += collectable_check(2, cont);
 		if (cont->tab[cont->player.posY + 1][cont->player.posX] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY + 1, cont->player.posX) == 0)
@@ -60,8 +72,7 @@ int	backward(t_content *cont)
 		if (cont->exit.y != 0 && cont->exit.x != 0 && mod == 0)
 		{
 			cont->tab[cont->exit.y][cont->exit.x] = 'E';
-			cont->exit.x = 0;
-			cont->exit.y = 0;
+			reset_value(cont);
 		}
 		else
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
@@ -73,17 +84,11 @@ int	backward(t_content *cont)
 	return (1);
 }
 
-int	turn_right(t_content *cont)
+int	turn_right(t_content *cont, int mod)
 {
-	int	mod;
-
-	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX + 1] != '1')
 	{
-		cont->player.move_count++;
-		ft_printf("Total move : %d\n", cont->player.move_count);
-		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'C')
-			cont->player.score ++;
+		cont->player.score += collectable_check(1, cont);
 		if (cont->tab[cont->player.posY][cont->player.posX + 1] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY, cont->player.posX + 1) == 0)
@@ -96,8 +101,7 @@ int	turn_right(t_content *cont)
 		if (cont->exit.y != 0 && cont->exit.x != 0 && mod == 0)
 		{
 			cont->tab[cont->exit.y][cont->exit.x] = 'E';
-			cont->exit.x = 0;
-			cont->exit.y = 0;
+			reset_value(cont);
 		}
 		else
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
@@ -109,17 +113,11 @@ int	turn_right(t_content *cont)
 	return (1);
 }
 
-int	turn_left(t_content *cont)
+int	turn_left(t_content *cont, int mod)
 {
-	int	mod;
-
-	mod = 0;
 	if (cont->tab[cont->player.posY][cont->player.posX - 1] != '1')
 	{
-		cont->player.move_count++;
-		ft_printf("Total move : %d\n", cont->player.move_count);
-		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'C')
-			cont->player.score ++;
+		cont->player.score += collectable_check(3, cont);
 		if (cont->tab[cont->player.posY][cont->player.posX - 1] == 'E')
 		{
 			if (exit_func(cont, cont->player.posY, cont->player.posX - 1) == 0)
@@ -132,8 +130,7 @@ int	turn_left(t_content *cont)
 		if (cont->exit.y != 0 && cont->exit.x != 0 && mod == 0)
 		{
 			cont->tab[cont->exit.y][cont->exit.x] = 'E';
-			cont->exit.x = 0;
-			cont->exit.y = 0;
+			reset_value(cont);
 		}
 		else
 			cont->tab[cont->player.posY][cont->player.posX] = '0';
