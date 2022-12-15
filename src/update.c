@@ -1,18 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
+/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 #include <fcntl.h>
 
 void	put_images(t_content *c, int p_y, int p_x, char tested_char)
 {
 	if (tested_char == '1')
-		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.wall, p_y, p_x);
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->i.w, p_y, p_x);
 	if (tested_char == 'P')
-		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.chad, p_y, p_x);
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->i.ch, p_y, p_x);
 	if (tested_char == '0')
-		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.erase, p_y, p_x);
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->i.e, p_y, p_x);
 	if (tested_char == 'E')
-		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.exit_s, p_y, p_x);
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->i.ex, p_y, p_x);
 	if (tested_char == 'C')
-		mlx_put_image_to_window(c->mlx, c->mlx_win, c->image.coin, p_y, p_x);
+		mlx_put_image_to_window(c->mlx, c->mlx_win, c->i.c, p_y, p_x);
 }
 
 void	update(t_content *content)

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
+/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 int	check_file(char *map)
@@ -68,8 +79,8 @@ int	main(int argc, char *argv[])
 	tab_allocation(&cont, argv[1]);
 	cont.player.max_score = get_max_score(cont.tab, cont.map);
 	get_start_position(&cont);
-	if (map_format_checker(cont.tab, cont.map) != 1)
-		return (0);
+	if (map_format_checker(cont.tab, cont.map) != 8)
+		return (error_message(map_format_checker(cont.tab, cont.map)));
 	if (wall_checker(cont.tab, cont.map) != 1)
 		return (0);
 	backtracking(cont.player.posY, cont.player.posX, &cont);

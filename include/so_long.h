@@ -24,13 +24,13 @@ typedef struct s_node
 
 typedef struct	s_image
 {
-	int	height;
-	int	width;
-	void *chad;
-	void *wall;
-	void *erase;
-	void	*coin;
-	void	*exit_s;
+	int	ph;
+	int	pw;
+	void *ch;
+	void *w;
+	void *e;
+	void	*c;
+	void	*ex;
 }		t_image;
 
 typedef	struct s_exit
@@ -60,7 +60,7 @@ typedef struct s_map
 typedef struct s_content
 {
 	t_map	map;
-	t_image	image;
+	t_image	i;
 	t_player player;
 	t_exit exit;
 	char	**tab;
@@ -98,5 +98,6 @@ int	arguement_check(int argc);
 int	tab_allocation(t_content *cont, char *argv);
 void	init(t_content *c);
 void	reset_value(t_content *cont);
+int	error_message(int code);
 
 #endif

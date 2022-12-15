@@ -1,16 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
+/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 void	init(t_content *c)
 {
+	char	*chad;
+	char	*wall;
+	char	*erase;
+	char	*exit;
+	char	*coin;
+
+	chad = "./ressources/chad.xpm";
+	wall = "./ressources/wall.xpm";
+	erase = "./ressources/erase.xpm";
+	exit = "./ressources/exit.xpm";
+	coin = "./ressources/coin.xpm";
 	c->exit.x = 0;
 	c->exit.y = 0;
 	c->player.score = 0;
 	c->player.move_count = 0;
-	c->image.chad = mlx_xpm_file_to_image(c->mlx, "./ressources/chad.xpm", &c->image.width, &c->image.height);
-	c->image.wall = mlx_xpm_file_to_image(c->mlx, "./ressources/wall.xpm", &c->image.width, &c->image.height);
-	c->image.erase = mlx_xpm_file_to_image(c->mlx, "./ressources/erase.xpm", &c->image.width, &c->image.height);
-	c->image.exit_s = mlx_xpm_file_to_image(c->mlx, "./ressources/exit.xpm", &c->image.width, &c->image.height);
-	c->image.coin = mlx_xpm_file_to_image(c->mlx, "./ressources/coin.xpm", &c->image.width, &c->image.height);
+	c->i.ch = mlx_xpm_file_to_image(c->mlx, chad, &c->i.pw, &c->i.ph);
+	c->i.w = mlx_xpm_file_to_image(c->mlx, wall, &c->i.pw, &c->i.ph);
+	c->i.e = mlx_xpm_file_to_image(c->mlx, erase, &c->i.pw, &c->i.ph);
+	c->i.ex = mlx_xpm_file_to_image(c->mlx, exit, &c->i.pw, &c->i.ph);
+	c->i.c = mlx_xpm_file_to_image(c->mlx, coin, &c->i.pw, &c->i.ph);
 }
 
 int	tab_allocation(t_content *cont, char *argv)
@@ -55,4 +77,23 @@ void	reset_value(t_content *cont)
 {
 	cont->exit.x = 0;
 	cont->exit.y = 0;
+}
+
+int	error_message(int code)
+{
+	if (code == 1)
+		ft_printf(" Error\nL'extension de fichier est invalide !");
+	if (code == 2)
+		ft_printf("Error\nLa map ne correspond pas au format !");
+	if (code == 3)
+		ft_printf("Error\nLa map contient trop de giga chad ! (player)");
+	if (code == 4)
+		ft_printf("Error\nLa map ne contient aucun player");
+	if (code == 5)
+		ft_printf("Error\nLa map contient trop plusieurs sorties !");
+	if (code == 6)
+		ft_printf("Error\nLa map ne contient aucune sortie !");
+	if (code == 7)
+		ft_printf("Error\nLa map contient des charactère interdit !");
+	return (0);
 }

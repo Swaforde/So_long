@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_format.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
+/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../include/so_long.h"
 
 int	char_checker(char **map, t_map info)
@@ -87,39 +98,18 @@ int	extension_checker(t_map info)
 int	map_format_checker(char **map, t_map info)
 {
 	if (extension_checker(info) != 1)
-	{
-		ft_printf(" Error\nL'extension de fichier est invalide !");
-		return (0);
-	}
+		return (1);
 	if (lenght_checker(map, info) != 1)
-	{
-		ft_printf("Error\nLa map ne correspond pas au format !");
-		return (0);
-	}
+		return (2);
 	if (doublon_checker(map, info, 'P') > 1)
-	{
-		ft_printf("Error\nLa map contient trop de giga chad ! (player)");
-		return (0);
-	}
+		return (3);
 	if (doublon_checker(map, info, 'P') < 1)
-	{
-		ft_printf("Error\nLa map ne contient aucun player");
-		return (0);
-	}
+		return (4);
 	if (doublon_checker(map, info, 'E') > 1)
-	{
-		ft_printf("Error\nLa map contient trop plusieurs sorties !");
-		return (0);
-	}
+		return (5);
 	if (doublon_checker(map, info, 'E') < 1)
-	{
-		ft_printf("Error\nLa map ne contient aucune sortie !");
-		return (0);
-	}
+		return (6);
 	if (char_checker(map, info) != 1)
-	{
-		ft_printf("Error\nLa map contient des charactère interdit !");
-		return (0);
-	}
-	return (1);
+		return (7);
+	return (8);
 }
