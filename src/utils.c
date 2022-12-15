@@ -58,9 +58,9 @@ int	tab_allocation(t_content *cont, char *argv)
 	if (!*tabtest)
 		return (0);
 	cont->tab = tab;
-	cont->tabTest = tabtest;
+	cont->tab_test = tabtest;
 	map_parsing(cont->tab, cont->map);
-	map_parsing(cont->tabTest, cont->map);
+	map_parsing(cont->tab_test, cont->map);
 }
 
 int	arguement_check(int argc)

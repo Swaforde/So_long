@@ -13,27 +13,27 @@
 
 void	backtracking(int posY, int posX, t_content *content)
 {
-	if (content->tabTest[posY - 1][posX] != '1')
+	if (content->tab_test[posY - 1][posX] != '1')
 	{
-		content->tabTest[posY][posX] = '1';
+		content->tab_test[posY][posX] = '1';
 		backtracking(posY - 1, posX, content);
 	}
-	if (content->tabTest[posY][posX + 1] != '1')
+	if (content->tab_test[posY][posX + 1] != '1')
 	{
-		content->tabTest[posY][posX] = '1';
+		content->tab_test[posY][posX] = '1';
 		backtracking(posY, posX + 1, content);
 	}
-	if (content->tabTest[posY + 1][posX] != '1')
+	if (content->tab_test[posY + 1][posX] != '1')
 	{
-		content->tabTest[posY][posX] = '1';
+		content->tab_test[posY][posX] = '1';
 		backtracking(posY + 1, posX, content);
 	}
-	if (content->tabTest[posY][posX - 1] != '1')
+	if (content->tab_test[posY][posX - 1] != '1')
 	{
-		content->tabTest[posY][posX] = '1';
+		content->tab_test[posY][posX] = '1';
 		backtracking(posY, posX - 1, content);
 	}
-	content->tabTest[posY][posX] = '1';
+	content->tab_test[posY][posX] = '1';
 }
 
 int	check_all_element(t_content *content, char **tab)

@@ -78,8 +78,8 @@ void	get_start_position(t_content *content)
 		{
 			if (content->tab[y][x] == 'P')
 			{
-				content->player.posY = y;
-				content->player.posX = x;
+				content->player.posy = y;
+				content->player.posx = x;
 			}
 			x ++;
 		}

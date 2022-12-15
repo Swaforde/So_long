@@ -36,7 +36,7 @@ void	exit_game(t_content *content, char *msg)
 	}
 	while (i <= content->map.height)
 	{
-		free (content->tabTest[i]);
+		free (content->tab_test[i]);
 		i ++;
 	}
 	exit(0);
@@ -83,8 +83,8 @@ int	main(int argc, char *argv[])
 		return (error_message(map_format_checker(cont.tab, cont.map)));
 	if (wall_checker(cont.tab, cont.map) != 1)
 		return (0);
-	backtracking(cont.player.posY, cont.player.posX, &cont);
-	if (check_all_element(&cont, cont.tabTest) != 0)
+	backtracking(cont.player.posy, cont.player.posx, &cont);
+	if (check_all_element(&cont, cont.tab_test) != 0)
 		return (0);
 	cont.mlx = mlx_init();
 	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "So_Long");
