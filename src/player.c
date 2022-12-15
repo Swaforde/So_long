@@ -26,3 +26,9 @@ int	exit_func(t_content *content, int dirY, int dirX)
 	}
 	return (1);
 }
+
+void	set_window(t_content *content)
+{
+	content->ww = content->map.width * 50;
+	content->wh = content->map.height * 50;
+}

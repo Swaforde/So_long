@@ -71,6 +71,8 @@ typedef struct s_content
 	t_image		i;
 	t_player	player;
 	t_exit		exit;
+	int			ww;
+	int			wh;
 	char		**tab;
 	char		**tab_test;
 	void		*mlx;
@@ -107,5 +109,6 @@ int		tab_allocation(t_content *cont, char *argv);
 void	init(t_content *c);
 void	reset_value(t_content *cont);
 int		error_message(int code);
+void	set_window(t_content *content);
 
 #endif

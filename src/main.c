@@ -87,7 +87,7 @@ int	main(int argc, char *argv[])
 	if (check_all_element(&cont, cont.tab_test) != 0)
 		return (0);
 	cont.mlx = mlx_init();
-	cont.mlx_win = mlx_new_window(cont.mlx, cont.map.width * 50, cont.map.height * 50, "So_Long");
+	cont.mlx_win = mlx_new_window(cont.mlx, cont.ww, cont.wh, "So_Long");
 	init(&cont);
 	update(&cont);
 	hooks(&cont);

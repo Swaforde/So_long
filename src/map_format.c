@@ -22,7 +22,8 @@ int	char_checker(char **map, t_map info)
 	{
 		while (f < info.width)
 		{
-			if (map[i][f] != 'P' && map[i][f] != 'E' && map[i][f] != '1' && map[i][f] != '0' && map[i][f] != 'C')
+			if (map[i][f] != 'P' && map[i][f] != 'E' && map[i][f] != '1'
+				&& map[i][f] != '0' && map[i][f] != 'C')
 				return (0);
 			f ++;
 		}
