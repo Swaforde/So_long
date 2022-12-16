@@ -6,9 +6,10 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/16 10:30:59 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int	wall_checker_extra(char *line, t_map info)

@@ -6,9 +6,10 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/16 10:33:54 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 int	check_file(char *map)
@@ -44,17 +45,24 @@ void	exit_game(t_content *content, char *msg)
 
 int	test(int keycode, t_content *content)
 {
+	int	i;
+
+	i = content->player.move_count;
 	if (keycode == 53)
 		exit_game(content, NULL);
 	if (keycode == w || keycode == 126)
-		content->player.move_count += forward(content, 0);
+		i += forward(content, 0);
 	if (keycode == s || keycode == 125)
-		content->player.move_count += backward(content, 0);
+		i += backward(content, 0);
 	if (keycode == d || keycode == 124)
-		content->player.move_count += turn_right(content, 0);
+		i += turn_right(content, 0);
 	if (keycode == a || keycode == 123)
-		content->player.move_count += turn_left(content, 0);
-	ft_printf("Total move : %d\n", content->player.move_count);
+		i += turn_left(content, 0);
+	if (i > content->player.move_count)
+	{
+		content->player.move_count = i;
+		ft_printf("Total move : %d\n", content->player.move_count);
+	}
 	update(content);
 	return (0);
 }
