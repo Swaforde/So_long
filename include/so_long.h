@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:31:03 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:42:52 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		forward(t_content *content, int mod);
 int		backward(t_content *content, int mod);
 int		turn_right(t_content *content, int mod);
 int		turn_left(t_content *content, int mod);
-void	exit_game(t_content *content, char *msg);
+void	exit_game(t_content *content);
 int		exit_func(t_content *content, int dirY, int dirX);
 int		get_max_score(char **tab, t_map map);
 void	backtracking(int posY, int posX, t_content *content);

@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:33:54 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:08:47 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@ int	check_file(char *map)
 	return (fd);
 }
 
-void	exit_game(t_content *content, char *msg)
+void	exit_game(t_content *content)
 {
 	int	i;
 
 	i = 0;
-	if (msg != NULL)
-		ft_printf("%s", msg);
 	mlx_destroy_image(content->mlx, content->mlx_win);
+	mlx_destroy_window(content->mlx, content->mlx_win);
 	while (i <= content->map.height)
 	{
 		free (content->tab[i]);
@@ -43,13 +42,14 @@ void	exit_game(t_content *content, char *msg)
 	exit(0);
 }
 
+
 int	test(int keycode, t_content *content)
 {
 	int	i;
 
 	i = content->player.move_count;
 	if (keycode == 53)
-		exit_game(content, NULL);
+		exit_game(content);
 	if (keycode == w || keycode == 126)
 		i += forward(content, 0);
 	if (keycode == s || keycode == 125)

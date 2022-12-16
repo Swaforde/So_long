@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:30:28 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/16 11:43:21 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exit_func(t_content *content, int dirY, int dirX)
 {
 	if (content->player.score == content->player.max_score)
 	{
-		exit_game(content, "vous avez terminé le jeu !");
+		exit_game(content);
 	}
 	else
 	{
