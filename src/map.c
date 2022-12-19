@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:30:44 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:10:17 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,18 @@ int	ft_get_height(t_map map)
 {
 	int	height;
 	int	fd;
+	char	*line;
 
 	fd = open(map.map_path, O_RDONLY);
 	height = 0;
-	while (get_next_line(fd) != NULL)
+	line = get_next_line(fd);
+	free (line);
+	while (line != NULL)
+	{
+		line = get_next_line(fd);
 		height ++;
+		free (line);
+	}
 	close (fd);
 	return (height);
 }
@@ -31,10 +38,13 @@ int	ft_get_width(t_map map)
 	int		width;
 	int		fd;
 	char	*ptr;
+	char	*line;
 
 	width = 0;
 	fd = open(map.map_path, O_RDONLY);
-	ptr = ft_strdup(get_next_line(fd));
+	line = get_next_line(fd);
+	ptr = ft_strdup(line);
+	free (line);
 	close (fd);
 	width = ft_strlen(ptr);
 	if (ptr[ft_strlen(ptr) - 1] == '\n')
@@ -94,12 +104,15 @@ void	map_parsing(char **tab, t_map map)
 	int		i;
 	int		fd;
 	char	*tmp;
+	char	*line;
 
 	i = 0;
 	fd = open(map.map_path, O_RDONLY);
 	while (i < map.height)
 	{
-		tmp = ft_strdup(get_next_line(fd));
+		line = get_next_line(fd);
+		tmp = ft_strdup(line);
+		free (line);
 		if (tmp[ft_strlen(tmp) - 1] == '\n')
 			tmp[ft_strlen(tmp) - 1] = '\0';
 		tab[i] = ft_strdup(tmp);

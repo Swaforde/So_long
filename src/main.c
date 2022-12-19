@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 13:08:47 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:23:32 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,7 @@ int	check_file(char *map)
 
 void	exit_game(t_content *content)
 {
-	int	i;
-
-	i = 0;
 	mlx_destroy_image(content->mlx, content->mlx_win);
-	mlx_destroy_window(content->mlx, content->mlx_win);
-	while (i <= content->map.height)
-	{
-		free (content->tab[i]);
-		i ++;
-	}
-	while (i <= content->map.height)
-	{
-		free (content->tab_test[i]);
-		i ++;
-	}
 	exit(0);
 }
 

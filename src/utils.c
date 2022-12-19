@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:30:56 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:55:54 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,8 @@ int	tab_allocation(t_content *cont, char *argv)
 	tab = ft_calloc (sizeof(char *), (cont->map.height + 1));
 	if (!tab)
 		return (0);
-	*tab = ft_calloc (sizeof(char), (cont->map.width + 1));
-	if (!*tab)
-		return (0);
 	tabtest = ft_calloc (sizeof(char *), (cont->map.height + 1));
 	if (!tabtest)
-		return (0);
-	*tabtest = ft_calloc (sizeof(char), (cont->map.width + 1));
-	if (!*tabtest)
 		return (0);
 	cont->tab = tab;
 	cont->tab_test = tabtest;
