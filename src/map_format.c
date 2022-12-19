@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 10:30:41 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:22:12 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,7 @@ int	map_format_checker(char **map, t_map info)
 		return (6);
 	if (char_checker(map, info) != 1)
 		return (7);
+	if (doublon_checker(map, info, 'C') < 1)
+		return (9);
 	return (8);
 }

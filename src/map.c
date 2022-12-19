@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/19 13:10:17 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:53:38 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	ft_get_height(t_map map)
 {
-	int	height;
-	int	fd;
+	int		height;
+	int		fd;
 	char	*line;
 
 	fd = open(map.map_path, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/19 12:55:54 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:30:24 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	tab_allocation(t_content *cont, char *argv)
 	map_parsing(cont->tab, cont->map);
 	map_parsing(cont->tab_test, cont->map);
 	set_window(cont);
+	return (1);
 }
 
 int	arguement_check(int argc)
@@ -91,5 +92,13 @@ int	error_message(int code)
 		ft_printf("Error\nLa map ne contient aucune sortie !");
 	if (code == 7)
 		ft_printf("Error\nLa map contient des charactère interdit !");
+	if (code == 9)
+		ft_printf("Error\nLa map ne contient aucun collectable !");
+	if (code == 20)
+		ft_printf("Error\nLa map n'est pas fermée !");
+	if (code == 30)
+		ft_printf("Error\nTous les objets ne sont pas collectable !");
+	if (code == 40)
+		ft_printf("Error\nMemory allocation failed !");
 	return (0);
 }

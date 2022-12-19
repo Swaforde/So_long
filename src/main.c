@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/19 13:23:32 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:31:11 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ int	check_file(char *map)
 	return (fd);
 }
 
-void	exit_game(t_content *content)
+void	exit_game(t_content *content, int error)
 {
-	mlx_destroy_image(content->mlx, content->mlx_win);
-	exit(0);
-}
-
-int	kill_game(t_content *content)
-{
-	exit_game(content);
+	error_message(error);
+	kill_game(content);
 }
 
 int	test(int keycode, t_content *content)
@@ -39,7 +34,7 @@ int	test(int keycode, t_content *content)
 
 	i = content->player.move_count;
 	if (keycode == 53)
-		exit_game(content);
+		kill_game(content);
 	if (keycode == w || keycode == 126)
 		i += forward(content, 0);
 	if (keycode == s || keycode == 125)
@@ -60,6 +55,7 @@ int	test(int keycode, t_content *content)
 void	hooks(t_content *content)
 {
 	mlx_key_hook(content->mlx_win, &test, content);
+	mlx_hook(content->mlx_win, 17, 0, kill_game, content);
 	mlx_loop(content->mlx);
 }
 
@@ -74,16 +70,17 @@ int	main(int argc, char *argv[])
 		return (0);
 	if (check_file(argv[1]) < 0)
 		return (0);
-	tab_allocation(&cont, argv[1]);
+	if (tab_allocation(&cont, argv[1]) != 1)
+		exit_game(&cont, 40);
 	cont.player.max_score = get_max_score(cont.tab, cont.map);
 	get_start_position(&cont);
 	if (map_format_checker(cont.tab, cont.map) != 8)
-		return (error_message(map_format_checker(cont.tab, cont.map)));
+		exit_game(&cont, map_format_checker(cont.tab, cont.map));
 	if (wall_checker(cont.tab, cont.map) != 1)
-		return (0);
+		exit_game(&cont, 10);
 	backtracking(cont.player.posy, cont.player.posx, &cont);
 	if (check_all_element(&cont, cont.tab_test) != 0)
-		return (0);
+		exit_game(&cont, 30);
 	cont.mlx = mlx_init();
 	cont.mlx_win = mlx_new_window(cont.mlx, cont.ww, cont.wh, "So_Long");
 	init(&cont);

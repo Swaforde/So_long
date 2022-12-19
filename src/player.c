@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/12/16 11:43:21 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:18:55 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	exit_func(t_content *content, int dirY, int dirX)
 {
 	if (content->player.score == content->player.max_score)
 	{
-		exit_game(content);
+		exit_game(content, 0);
 	}
 	else
 	{
@@ -32,4 +32,9 @@ void	set_window(t_content *content)
 {
 	content->ww = content->map.width * 50;
 	content->wh = content->map.height * 50;
+}
+
+int	kill_game(t_content *content)
+{
+	exit(0);
 }

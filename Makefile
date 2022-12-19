@@ -13,13 +13,12 @@ all : ${NAME}
 	$(CC) -Imlx -c $< -o $@
 
 ${NAME} : ${OBJS}
-	${MAKE} bonus -C ./libft 
+	${MAKE} bonus -C ./Libft 
 	${MAKE} -C ./mlx
-	$(CC) $(OBJS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
+	$(CC) $(OBJS) $(CFLAGS) ./Libft/libft.a -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 clean:
 	${RM} ${OBJS}
-	make fclean -C ./libft
+	make fclean -C ./Libft
 	make clean -Wno-deprecated-declarations -C ./mlx
 
 fclean: clean

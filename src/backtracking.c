@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   backtracking.c        	                            :+:      :+:    :+:   */
+/*   backtracking.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 11:53:11 by tbouvera          #+#    #+#             */
-/*   Updated: 2022/10/18 10:43:05 by tbouvera         ###   ########.fr       */
+/*   Updated: 2022/12/19 14:25:45 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	backtracking(int posY, int posX, t_content *content)
@@ -56,7 +57,5 @@ int	check_all_element(t_content *content, char **tab)
 		f = 0;
 		i ++;
 	}
-	if (total != 0)
-		ft_printf("Error\nTous les objets ne sont pas collectable !");
 	return (total);
 }
