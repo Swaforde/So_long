@@ -42,6 +42,10 @@ void	exit_game(t_content *content)
 	exit(0);
 }
 
+int	kill_game(t_content *content)
+{
+	exit_game(content);
+}
 
 int	test(int keycode, t_content *content)
 {
